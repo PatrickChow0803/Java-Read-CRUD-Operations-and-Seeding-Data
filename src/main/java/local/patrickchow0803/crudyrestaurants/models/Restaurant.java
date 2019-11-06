@@ -16,7 +16,7 @@ public class Restaurant {
     @Column(unique = true,
             nullable = false)
     private String name;
-    
+
     private String address;
     private String city;
     private String state;
