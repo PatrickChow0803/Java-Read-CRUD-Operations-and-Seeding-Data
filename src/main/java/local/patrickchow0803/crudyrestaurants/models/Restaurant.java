@@ -1,5 +1,7 @@
 package local.patrickchow0803.crudyrestaurants.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant",
                cascade = CascadeType.ALL,// When you change a restaurant, you'd also want to be able to change the menu
                orphanRemoval = true)
+    @JsonIgnoreProperties("restaurant") // Prevents the printing out in Postman to print it again
     private List<Menu> menus = new ArrayList<>();
 
     // Kinda like having an Entity be the owner of the join table
@@ -36,6 +39,7 @@ public class Restaurant {
                joinColumns = @JoinColumn(name = "restaurantid"), // the column name inside of this class
                inverseJoinColumns = @JoinColumn(name = "paymentid") //paymentid comes from the payment model class
               )
+    @JsonIgnoreProperties("restaurants")
     List<Payment> payments = new ArrayList<>();
 
     public Restaurant(){
