@@ -39,7 +39,7 @@ public class RestaurantController {
     @GetMapping(value = "/restaurant/{restid}",
             produces = {"application/json"})
     public ResponseEntity<?> findRestaurantById(@PathVariable long restid){
-        Restaurant myRestaurant = restaurantService.findRestaurantById();
+        Restaurant myRestaurant = restaurantService.findRestaurantById(restid);
         return new ResponseEntity<>(myRestaurant, HttpStatus.OK);
     }
 
